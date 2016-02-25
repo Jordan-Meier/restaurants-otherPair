@@ -12,7 +12,7 @@ class Restaurant
         $this->res_name = $res_name;
         $this->id = $id;
         $this->cuisine_id = $cuisine_id;
-        $this->description;
+        $this->description = $description;
     }
 
     function getDescription()
@@ -22,7 +22,7 @@ class Restaurant
 
     function setDescription($new_description)
     {
-        return $this->description = (string) $new_description;
+        $this->description = (string) $new_description;
     }
 
     function getName()
@@ -47,7 +47,7 @@ class Restaurant
 
     function save()//save a restaurant to the database
     {
-        $GLOBALS['DB']->exec("INSERT INTO restaurants (name, cuisine_id, description) VALUES ('{$this->getName()}', {$this->getCuisineID()}, '{$this->getDescription()}')");
+        $GLOBALS['DB']->exec("INSERT INTO restaurants (name, cuisine_id, description) VALUES ('{$this->getName()}', {$this->getCuisineID()}, '{$this->getDescription()}');");
         $this->id = $GLOBALS['DB']->lastInsertId();
     }
 
