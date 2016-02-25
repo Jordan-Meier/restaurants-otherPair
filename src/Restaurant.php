@@ -107,14 +107,14 @@ class Restaurant
         $this->setDescription($new_description);
     }
 
-    function delete($cuisine_id)
+    function delete()
     {
-        $GLOBALS['DB']->exec("DELETE FROM restaurants WHERE cuisine_id = {$cuisine_id};");
+        $GLOBALS['DB']->exec("DELETE FROM restaurants WHERE cuisine_id = {$this->getCuisineID()};");
     }
 
-    // function deleteOneRestaurant()
-    // {
-    //     $GLOBALS['DB']->exec("DELETE FROM restaurants WHERE id = {$this->getRestaurantId()};");
-    // }
+    function deleteOneRestaurant()
+    {
+        $GLOBALS['DB']->exec("DELETE FROM restaurants WHERE id = {$this->getRestaurantId()};");
+    }
 }
 ?>
