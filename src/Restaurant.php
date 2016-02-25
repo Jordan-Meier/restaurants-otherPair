@@ -73,15 +73,15 @@ class Restaurant
 
     static function find($search_id)//finding a specific restaurant
     {
-        $all_restaurants = Restaurant::getAll();
-        $found_restaurant = array();
-        foreach($all_restaurants as $restaurant){
+        $found_restaurant = null;
+        $restaurants = Restaurant::getAll();
+        foreach($restaurants as $restaurant){
             $restaurant_id = $restaurant->getRestaurantID();
             if ($restaurant_id == $search_id){
                 $found_restaurant = $restaurant;
             }
-            return $found_restaurant;
         }
+        return $found_restaurant;
     }
 
     function findReviews()//finding all reviews for a restaurant
@@ -101,7 +101,7 @@ class Restaurant
 
     function updateRestaurant($new_res_name, $new_description)
     {
-        $GLOBALS['DB']->exec("UPDATE restaurants SET (name, description) = ('{$new_res_name}', '{$new_description}') WHERE id = {$this->getRestaurantId()};");
+        $GLOBALS['DB']->exec("UPDATE restaurants SET name = '{$new_res_name}', description = '{$new_description}' WHERE id = {$this->getRestaurantId()};");
 
         $this->setName($new_res_name);
         $this->setDescription($new_description);
