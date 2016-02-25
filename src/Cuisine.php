@@ -77,6 +77,7 @@ class Cuisine
             array_push($restaurant_in_cuisine, $new_restaurant);
         }
         return $restaurant_in_cuisine;
+
     }
 
     function update($new_name)
