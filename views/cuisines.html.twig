@@ -16,6 +16,15 @@
                     <ul>
                         <li>Description: {{ restaurant.getDescription }}</li>
                     </ul>
+                    <form action="/restaurants/{{ restaurant.getRestaurantID }}/edit" >
+                        <!-- <input name="_method" type="hidden" value="patch"> -->
+                        <button type="submit" name="button">Edit this restaurant</button>
+                    </form>
+                    <!-- <form action="/delete_restaurant/{{ restaurant.getRestaurantID }}" method="post">
+                        <input name="_method" type="hidden" value="delete">
+                        <button type="submit" name="button">Delete this restaurant</button>
+                    </form> -->
+
             {% endfor %}
         </ul>
         {% else %}

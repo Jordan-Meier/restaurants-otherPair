@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css'>
+        <title></title>
+    </head>
+    <body>
+        <h1>Update the restaurant </h1>
+
+        <form action="/restaurant/{{ restaurant.getRestaurantID }}" method="post">
+          <input name="_method" type="hidden" value="patch">
+
+          <label for="name">Rename your restaurant:</label>
+          <input id="name" name="name" type="text" value= "{{ restaurant.getName }}">
+          <label for="description">Change restaurant description:</label>
+          <input id="description" name="description" type="text" value= "{{ restaurant.getDescription }}">
+
+          <button type="submit">Update</button>
+        </form>
+    </body>
+</html>

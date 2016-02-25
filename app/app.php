@@ -5,6 +5,8 @@
 
     $app = new Silex\Application();
 
+   $app['debug'] = true;
+
     $server = 'mysql:host=localhost;dbname=cuisine';
     $username = 'root';
     $password = 'root';
@@ -54,9 +56,9 @@ $app->get("/cuisines", function() use ($app) {
     });
 
     $app->patch("/cuisines/{id}", function($id) use ($app) {
-        $type = $_POST['type'];
+        $name = $_POST['name'];
         $cuisine = Cuisine::find($id);
-        $cuisine->update($type);
+        $cuisine->update($name);
         return $app['twig']->render('cuisines.html.twig', array('cuisine' => $cuisine, 'restaurants' => $cuisine->findRestaurant_InCuisine()));
     });
 
@@ -73,6 +75,29 @@ $app->get("/cuisines", function() use ($app) {
         $cuisine = Cuisine::find($cuisine_id);
         return $app['twig']->render('cuisines.html.twig', array('cuisine' => $cuisine, 'restaurants' => $cuisine->findRestaurant_InCuisine()));
     });
+
+    $app->get("/restaurants/{id}/edit", function($id) use ($app) {
+        $restaurant = Restaurant::find($id);
+        return $app['twig']->render('restaurant_edit.html.twig', array('restaurant' => $restaurant));
+    });
+
+    $app->patch("/restaurant/{id}", function($id) use ($app) {
+       $new_res_name = $_POST['name'];
+       $new_description = $_POST['description'];
+       $restaurant = Restaurant::find($id);
+       $restaurant->updateName($new_name);
+       $cuisine_id = $restaurant->getCuisineId();
+       $cuisine = Cuisine::find($cuisine_id);
+       return $app['twig']->render('cuisines.html.twig', array('cuisine' => $cuisine, 'restaurants' => $cuisine->getRestaurants()));
+   });
+
+    // $app->delete("/restaurant/{id}/delete", function($id) use ($app) {
+    //     $restaurant = Restaurant::find($id);
+    //     $cuisine_id = $restaurant->getCuisineId();
+    //     $cuisine = Cuisine::find($cuisine_id);
+    //     $restaurant->deleteOneRestaurant();
+    //     return $app['twig']->render('cuisines.html.twig', array('cuisine' => $cuisine, 'restaurants' => $cuisine->findRestaurant_InCuisine()));
+    // });
 
 
     return $app;
