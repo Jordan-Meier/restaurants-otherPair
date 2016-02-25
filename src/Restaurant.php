@@ -98,5 +98,23 @@ class Restaurant
         }
         return $review_in_restaurant;
     }
+
+    function updateRestaurant($new_res_name, $new_description)
+    {
+        $GLOBALS['DB']->exec("UPDATE restaurants SET (name, description) = '{$new_res_name}', '{$new_description}' WHERE id = {$this->getRestaurantId()};");
+
+        $this->setName($new_res_name);
+        $this->setDescription($new_description);
+    }
+
+    function delete($cuisine_id)
+    {
+        $GLOBALS['DB']->exec("DELETE FROM restaurants WHERE cuisine_id = {$cuisine_id};");
+    }
+
+    // function deleteOneRestaurant()
+    // {
+    //     $GLOBALS['DB']->exec("DELETE FROM restaurants WHERE id = {$this->getRestaurantId()};");
+    // }
 }
 ?>

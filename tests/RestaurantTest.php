@@ -219,5 +219,79 @@
 
         }
 
+        function testUpdateRestaurant()
+        {
+            //Arrange
+            $name = 'Mexican';
+            $test_Cuisine = new Cuisine($name);
+            $test_Cuisine->save();
+
+            $res_name = "Por Que No";
+            $id = null;
+            $description = "very yummy tacos";
+            $cuisine_id = $test_Cuisine->getCuisineID();
+            $test_restaurant = new Restaurant($res_name, $id, $cuisine_id, $description);
+            $test_restaurant->save();
+
+            $new_res_name = "Por Que";
+            $new_description = "yikes";
+
+            //Act
+            $test_restaurant->updateRestaurant($new_res_name, $new_description);
+            $result = Restaurant::getAll();
+
+            //Assert
+            $this->assertEquals([$test_restaurant], $result);
+        }
+
+
+        function testDeleteRestaurants()
+        {
+            //Arrange
+            $name = "Mexican";
+            $id = null;
+            $test_cuisine = new Cuisine($name, $id);
+            $test_cuisine->save();
+
+            $res_name = "Por Que No";
+            $description = "yummy tacos";
+            $cuisine_id = $test_cuisine->getCuisineID();
+            $test_restaurant = new Restaurant($res_name, $id, $cuisine_id, $description);
+            $test_restaurant->save();
+
+
+            //Act
+            $test_restaurant->delete();
+
+            //Assert
+            $this->assertEquals([], Restaurant::getAll());
+        }
+
+        function testDeleteOneRestaurant()
+        {
+            //Arrange
+            $name = "Mexican";
+            $id = null;
+            $test_cuisine = new Cuisine($name, $id);
+            $test_cuisine->save();
+
+            $res_name = "Por Que No";
+            $description = "yummy tacos";
+            $cuisine_id = $test_cuisine->getCuisineID();
+            $test_restaurant = new Restaurant($res_name, $id, $cuisine_id, $description);
+            $test_restaurant->save();
+
+            $res_name2 = "Javiers";
+            $description2 = "quick food";
+            $cuisine_id2 = $test_cuisine->getCuisineID();
+            $test_restaurant2 = new Restaurant($res_name, $id, $cuisine_id, $description);
+            $test_restaurant2->save();
+
+            //Act
+            $test_restaurant->deleteOneRestaurant();
+            //Assert
+            $this->assertEquals([$test_restaurant2], Restaurant::getAll());
+        }
+
     }
 ?>
