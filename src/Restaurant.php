@@ -101,7 +101,7 @@ class Restaurant
 
     function updateRestaurant($new_res_name, $new_description)
     {
-        $GLOBALS['DB']->exec("UPDATE restaurants SET (name, description) = '{$new_res_name}', '{$new_description}' WHERE id = {$this->getRestaurantId()};");
+        $GLOBALS['DB']->exec("UPDATE restaurants SET (name, description) = ('{$new_res_name}', '{$new_description}') WHERE id = {$this->getRestaurantId()};");
 
         $this->setName($new_res_name);
         $this->setDescription($new_description);

@@ -238,10 +238,10 @@
 
             //Act
             $test_restaurant->updateRestaurant($new_res_name, $new_description);
-            $result = Restaurant::getAll();
+            // $result = Restaurant::getAll();
 
             //Assert
-            $this->assertEquals([$test_restaurant], $result);
+            $this->assertEquals(["Por Que", "yikes"], [$test_restaurant->getName(), $test_restaurant->getDescription()]);
         }
 
 
