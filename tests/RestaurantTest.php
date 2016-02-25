@@ -40,7 +40,8 @@
               $test_myRestaurant->save();
 
               //Act
-              $result = $test_myRestaurant->setName($res_name);
+              $test_myRestaurant->setName($res_name);
+              $result = $test_myRestaurant->getName();
 
               //Assert
               $this->assertEquals($res_name, $result);
@@ -182,7 +183,7 @@
             $result = Restaurant::find($test_myRestaurant->getRestaurantID());
 
             //Assert
-            $this->assertEquals([$test_myRestaurant], $result);
+            $this->assertEquals($test_myRestaurant, $result);
 
         }
 

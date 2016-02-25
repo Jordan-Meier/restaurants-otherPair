@@ -32,7 +32,7 @@ class Restaurant
 
     function setName($new_res_name)
     {
-        return $this->res_name = (string) $new_res_name;
+        $this->res_name = (string) $new_res_name;
     }
 
     function getRestaurantID()
@@ -78,7 +78,7 @@ class Restaurant
         foreach($all_restaurants as $restaurant){
             $restaurant_id = $restaurant->getRestaurantID();
             if ($restaurant_id == $search_id){
-                array_push($found_restaurant, $restaurant);
+                $found_restaurant = $restaurant;
             }
             return $found_restaurant;
         }
