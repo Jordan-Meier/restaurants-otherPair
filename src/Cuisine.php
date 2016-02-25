@@ -79,5 +79,10 @@ class Cuisine
         return $restaurant_in_cuisine;
     }
 
+    function update($new_name)
+    {
+        $GLOBALS['DB']->exec("UPDATE cuisines SET name = '{$new_name}' WHERE id = {$this->getCuisineId()};");
+        $this->setName($new_name);
+    }
 }
 ?>

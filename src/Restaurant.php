@@ -82,7 +82,6 @@ class Restaurant
             }
             return $found_restaurant;
         }
-
     }
 
     function findReviews()//finding all reviews for a restaurant
@@ -97,9 +96,7 @@ class Restaurant
             array_push($review_in_restaurant, $new_restaurant_review);
 
         }
-
         return $review_in_restaurant;
     }
-
 }
 ?>

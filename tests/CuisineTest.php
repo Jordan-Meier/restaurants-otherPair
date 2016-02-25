@@ -159,6 +159,21 @@
             $this->assertEquals([$test_myRestaurant, $test_myRestaurant2], $result);
         }
 
+        function testUpdate()
+        {
+            //Arrange
+            $name = "Mexican";
+            $id = null;
+            $test_cuisine = new Cuisine($name, $id);
+            $test_cuisine->save();
 
+            $new_name = "German";
+
+            //Act
+            $test_cuisine->update($new_name);
+
+            //Assert
+            $this->assertEquals("German", $test_cuisine->getName());
+        }
     }
 ?>
