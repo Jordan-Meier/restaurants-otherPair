@@ -17,5 +17,11 @@
 
           <button type="submit">Update</button>
         </form>
+        <form action="/restaurant/{{ restaurant.getRestaurantID}}/delete" method="post">
+          <input name="_method" type="hidden" value="delete">
+
+          <button type="submit">Delete This Restaurant</button>
+        </form>
+
     </body>
 </html>
