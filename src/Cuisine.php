@@ -84,5 +84,11 @@ class Cuisine
         $GLOBALS['DB']->exec("UPDATE cuisines SET name = '{$new_name}' WHERE id = {$this->getCuisineId()};");
         $this->setName($new_name);
     }
+
+    function delete()
+    {
+        $GLOBALS['DB']->exec("DELETE FROM cuisines WHERE id = {$this->getCuisineId()};");
+        $GLOBALS['DB']->exec("DELETE FROM restaurants WHERE cuisine_id = {$this->getCuisineId()};");
+    }
 }
 ?>
